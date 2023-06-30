@@ -30,4 +30,18 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    /**
+     * 회원 생성 메서드
+     */
+    public static Member createMember(String username, String password, String name, Address address) {
+        Member member = new Member();
+
+        member.setUsername(username);
+        member.setPassword(password);
+        member.setName(name);
+        member.setAddress(address);
+
+        return member;
+    }
 }

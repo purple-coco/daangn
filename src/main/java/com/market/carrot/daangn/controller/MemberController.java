@@ -40,11 +40,7 @@ public class MemberController {
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
 
-        Member member = new Member();
-        member.setUsername(form.getUsername());
-        member.setPassword(form.getPassword());
-        member.setName(form.getName());
-        member.setAddress(address);
+        Member member = Member.createMember(form.getUsername(), form.getPassword(), form.getName(), address);
 
         memberService.join(member);
         return "redirect:/";
