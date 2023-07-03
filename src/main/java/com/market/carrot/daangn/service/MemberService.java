@@ -34,6 +34,22 @@ public class MemberService {
         }
     }
 
+    /* 로그인 */
+    public boolean loginMember(String username, String password) {
+
+        Member loginMember = memberRepository.findByUsername(username);
+
+        if (!loginMember.getUsername().equals(username) ||
+            !loginMember.getPassword().equals(password)) {
+
+            return false;
+        }
+
+        return true;
+    }
+
+
+
     /* 회원 전체 조회 */
     public List<Member> findMembers() {
         return memberRepository.findAll();
