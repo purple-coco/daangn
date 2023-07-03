@@ -56,24 +56,24 @@ public class HomeController {
 
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("/members/login")
     public String loginForm(@ModelAttribute("loginForm") MemberLoginForm form) {
-        return "members/loginForm";
+        return "members/loginMemberForm";
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/members/login")
     public String LoginForm(@Validated @ModelAttribute("loginForm") MemberLoginForm form,
                             BindingResult bindingResult, HttpServletRequest request) {
 
         if(bindingResult.hasErrors()) {
-            return "members/loginForm";
+            return "members/loginMemberForm";
         }
 
         Member loginMember = memberService.loginMember(form.getUsername(), form.getPassword());
 
         if (loginMember == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호 확인이 필요합니다.");
-            return "members/loginForm";
+            return "members/loginMemberForm";
         } else {
             HttpSession session = request.getSession();;
             session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
@@ -83,7 +83,7 @@ public class HomeController {
 
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/members/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
