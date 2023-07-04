@@ -11,23 +11,17 @@
 
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
 
-    <div class="jumbotron">
-        <h1>HELLO SHOP</h1>
-        <p class="lead">회원 기능</p>
-        <p>
-            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
-            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
-        </p>
-        <p class="lead">상품 기능</p>
-        <p>
-            <a class="btn btn-lg btn-dark" href="/items/new">상품 등록</a>
-            <a class="btn btn-lg btn-dark" href="/items">상품 목록</a>
-        </p>
-        <p class="lead">주문 기능</p>
-        <p>
-            <a class="btn btn-lg btn-info" href="/order">상품 주문</a>
-            <a class="btn btn-lg btn-info" href="/orders">주문 내역</a>
-        </p>
+    <div style="width: 400px; margin: 0 auto">
+        <img src = "/assets/images/character.png" style="width: 350px; height: 500px"/>
+
+        <h4 style="text-align: left">당신 근처의 daangn</h4>
+        <br />
+        <p style="text-align: left">이제 내 동네에서</p>
+        <p style="text-align: left">간편하게 중고거래 하자</p>
+
+        <button onclick="location.href='/members/new'" class="btn btn-primary" style="margin-top: 15px; margin-bottom: 25px; width: 400px; height: 55px; background-color: #FE9A2E; font-weight: bold; border-color: #ffffff">시작하기</button>
+
+        <a href="/members/login" style="margin-bottom: 50px; display: block; text-align: center; color: #2E2E2E; text-decoration-line: none">이미 계정이 있나요?</a>
     </div>
 
     <div th:replace="fragments/footer :: footer" />

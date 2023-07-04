@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
@@ -23,7 +24,7 @@ public class HomeController {
     private final MemberService memberService;
 
 
-    @RequestMapping("/")
+//    @RequestMapping("/")
 //    public String home(HttpServletRequest request, Model model) {
 //
 //        HttpSession session = request.getSession(false);
@@ -62,7 +63,7 @@ public class HomeController {
     }
 
     @PostMapping("/members/login")
-    public String LoginForm(@Validated @ModelAttribute("loginForm") MemberLoginForm form,
+    public String LoginForm(@Valid @ModelAttribute("loginForm") MemberLoginForm form,
                             BindingResult bindingResult, HttpServletRequest request) {
 
         if(bindingResult.hasErrors()) {
@@ -83,7 +84,7 @@ public class HomeController {
 
     }
 
-    @PostMapping("/members/logout")
+    @PostMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 

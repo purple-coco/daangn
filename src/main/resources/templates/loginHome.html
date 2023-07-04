@@ -1,20 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+
 <body>
 
-<div class="container" style="max-width: 600px">
-    <div class="py-5 text-center">
-        <h2>홈 화면</h2>
-    </div>
+<div class="container">
+
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
 
     <h4 class="mb-3" th:text="|로그인: ${member.name}|">로그인 사용자 이름</h4>
 
-    <hr class="my-4">
 
     <div class="row">
         <div class="col">
@@ -32,7 +30,7 @@
         </div>
     </div>
 
-    <hr class="my-4">
+    <div th:replace="fragments/footer :: footer" />
 
 </div> <!-- /container -->
 

@@ -38,7 +38,7 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+        Address address = new Address(form.getCity(), form.getStreet());
 
         Member member = Member.createMember(form.getUsername(), form.getPassword(), form.getName(), address);
 

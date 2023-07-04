@@ -7,8 +7,8 @@ spring:
 
 
   jpa:
-    hibernate:
-      ddl-auto: create #애플리케이션 실행 시점에 테이블을 재생성
+    hibernate.hbm2ddl.auto: update
+#      ddl-auto: update #애플리케이션 실행 시점에 테이블을 재생성
     properties:
       hibernate:
         show_sql: true
@@ -23,3 +23,4 @@ server:
   servlet:
     session:
       tracking-modes: cookie
+      timeout: 1800
