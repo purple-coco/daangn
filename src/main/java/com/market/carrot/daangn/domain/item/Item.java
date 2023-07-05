@@ -1,6 +1,7 @@
 package com.market.carrot.daangn.domain.item;
 
 import com.market.carrot.daangn.domain.Category;
+import com.market.carrot.daangn.domain.UploadFile;
 import com.market.carrot.daangn.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +36,10 @@ public abstract class Item {
     @NotNull
     @Max(999)
     private int stockQuantity;
+
+    private UploadFile attachFile;
+
+    private List<UploadFile> imageFiles;
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();

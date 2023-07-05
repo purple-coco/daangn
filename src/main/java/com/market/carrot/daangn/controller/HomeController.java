@@ -1,5 +1,6 @@
 package com.market.carrot.daangn.controller;
 
+import com.market.carrot.daangn.argumentresolver.Login;
 import com.market.carrot.daangn.domain.Member;
 import com.market.carrot.daangn.domain.form.MemberLoginForm;
 import com.market.carrot.daangn.domain.session.SessionConst;
@@ -45,13 +46,24 @@ public class HomeController {
 //    }
 
     @GetMapping("/")
-    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
-                       Member loginMember, Model model) {
+//    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
+//                       Member loginMember, Model model) {
+//
+//        if (loginMember == null) {
+//            return "home";
+//        }
+//
+//        model.addAttribute("member", loginMember);
+//        return "loginHome";
+//
+//    }
+    public String home(@Login Member loginMember, Model model) {
 
         if (loginMember == null) {
             return "home";
         }
 
+        //modelAttribute가 아니라 우리가 만든 argumentresolver가 동작하도록 구현 필요
         model.addAttribute("member", loginMember);
         return "loginHome";
 
