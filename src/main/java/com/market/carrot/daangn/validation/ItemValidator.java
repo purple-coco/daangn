@@ -1,11 +1,9 @@
 package com.market.carrot.daangn.validation;
 
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 @Component
@@ -36,12 +34,14 @@ public class ItemValidator implements Validator {
 
         }
 
-
-
-        if (form.getStockQuantity() > 1000) {
-//            bindingResult.addError(new FieldError("form", "stockQuantity", form.getStockQuantity(), false, new String[]{"max.item.quantity"}, new Object[]{999}, null));
-            errors.rejectValue("stockQuantity", "max", new Object[]{9999}, null);
+        if (!StringUtils.hasText(form.getDescription())) {
+            errors.rejectValue("description", "required");
         }
+
+        if (!StringUtils.hasText(form.getPlace())) {
+            errors.rejectValue("place", "required");
+        }
+
 
 
     }

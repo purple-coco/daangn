@@ -1,6 +1,5 @@
 package com.market.carrot.daangn.service;
 
-import com.market.carrot.daangn.domain.item.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

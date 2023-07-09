@@ -1,7 +1,6 @@
 package com.market.carrot.daangn.service.validation;
 
-import com.market.carrot.daangn.domain.item.Book;
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;

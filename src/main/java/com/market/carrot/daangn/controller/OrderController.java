@@ -2,7 +2,7 @@ package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.domain.Member;
 import com.market.carrot.daangn.domain.Order;
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import com.market.carrot.daangn.repository.OrderSearch;
 import com.market.carrot.daangn.service.ItemService;
 import com.market.carrot.daangn.service.MemberService;

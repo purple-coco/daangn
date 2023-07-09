@@ -1,6 +1,6 @@
 package com.market.carrot.daangn.repository;
 
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

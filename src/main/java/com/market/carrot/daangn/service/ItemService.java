@@ -1,7 +1,6 @@
 package com.market.carrot.daangn.service;
 
-import com.market.carrot.daangn.domain.item.Book;
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import com.market.carrot.daangn.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class ItemService {
 
         findItem.setPrice(price);
         findItem.setName(name);
-        findItem.setStockQuantity(stockQuantity);
+//        findItem.setStockQuantity(stockQuantity);
 
     }
 

@@ -1,6 +1,5 @@
 package com.market.carrot.daangn.domain;
 
-import com.market.carrot.daangn.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 

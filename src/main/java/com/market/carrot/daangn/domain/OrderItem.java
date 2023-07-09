@@ -1,6 +1,5 @@
 package com.market.carrot.daangn.domain;
 
-import com.market.carrot.daangn.domain.item.Item;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,13 +42,13 @@ public class OrderItem {
         orderItem.setOrderPrice(orderPrice);
         orderItem.setCount(count);
 
-        item.removeStock(count);
+//        item.removeStock(count);
         return orderItem;
     }
 
-    public void cancel() {
-        getItem().addStock(count);//재고를 주문수량만큼 늘려줘
-    }
+//    public void cancel() {
+//        getItem().addStock(count);//재고를 주문수량만큼 늘려줘
+//    }
 
     public int getTotalPrice() {
         return getOrderPrice() * getCount();

@@ -4,7 +4,7 @@ import com.market.carrot.daangn.domain.Delivery;
 import com.market.carrot.daangn.domain.Member;
 import com.market.carrot.daangn.domain.Order;
 import com.market.carrot.daangn.domain.OrderItem;
-import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.domain.Item;
 import com.market.carrot.daangn.repository.ItemRepository;
 import com.market.carrot.daangn.repository.MemberRepository;
 import com.market.carrot.daangn.repository.OrderRepository;
