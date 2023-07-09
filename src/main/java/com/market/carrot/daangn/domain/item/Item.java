@@ -37,9 +37,7 @@ public abstract class Item {
     @Max(999)
     private int stockQuantity;
 
-    private UploadFile attachFile;
-
-    private List<UploadFile> imageFiles;
+//    private List<UploadFile> imageFiles;
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();

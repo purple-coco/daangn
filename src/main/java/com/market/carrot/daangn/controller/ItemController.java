@@ -2,6 +2,8 @@ package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.domain.item.Book;
 import com.market.carrot.daangn.domain.item.Item;
+import com.market.carrot.daangn.file.FileStore;
+import com.market.carrot.daangn.repository.ItemRepository;
 import com.market.carrot.daangn.service.ItemService;
 import com.market.carrot.daangn.validation.ItemValidator;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,8 @@ public class ItemController {
 
     private final ItemService itemService;
     private final ItemValidator itemValidator;
+    private final ItemRepository itemRepository;
+    private final FileStore fileStore;
 
     @GetMapping("/items/new")
     public String createForm(Model model) {

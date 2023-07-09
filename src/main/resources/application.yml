@@ -5,10 +5,13 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
+file:
+  dir: ${user.dir}/src/main/resources/files/
 
   jpa:
-    hibernate.hbm2ddl.auto: update
-#      ddl-auto: update #애플리케이션 실행 시점에 테이블을 재생성
+#    hibernate.hbm2ddl.auto: update
+    hibernate:
+      ddl-auto: create #애플리케이션 실행 시점에 테이블을 재생성
     properties:
       hibernate:
         show_sql: true
