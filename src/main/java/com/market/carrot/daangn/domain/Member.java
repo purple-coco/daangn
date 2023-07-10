@@ -5,8 +5,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 
 @Entity
 @Getter @Setter
@@ -24,6 +26,9 @@ public class Member {
     private String password;
 
     @NotEmpty
+    private String password2;
+
+    @NotEmpty
     private String name;
 
     private Address address;
@@ -34,14 +39,16 @@ public class Member {
     /**
      * 회원 생성 메서드
      */
-    public static Member createMember(String username, String password, String name, Address address) {
+    public static Member createMember(String username, String password, String password2, String name, Address address) {
         Member member = new Member();
 
         member.setUsername(username);
         member.setPassword(password);
+        member.setPassword2(password2);
         member.setName(name);
         member.setAddress(address);
 
         return member;
     }
+
 }

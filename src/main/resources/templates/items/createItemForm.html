@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label th:for="price">가격</label>
-                <input type="text" th:field="*{price}"
+                <input type="number" th:field="*{price}"
                        th:errorclass="field-error" class="form-control" placeholder="가격을 입력하세요"
                        style="height: 50px; border-color: #2E2E2E; border-weight: 2px">
                 <div class="field-error" th:errors="*{price}">
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label th:for="description">자세한 설명</label>
                 <input type="text" th:field="*{description}"
-                       th:errorclass="field-error" class="form-control" placeholder="상품을 소개해주세요"
+                       th:errorclass="field-error" class="form-control" placeholder="상품 상세 설명을 입력해주세요"
                        style="height: 50px; border-color: #2E2E2E; border-weight: 2px">
                 <div class="field-error" th:errors="*{description}">
                     수량 오류

@@ -32,12 +32,13 @@ public class ItemService {
 //    }
 
     @Transactional
-    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+    public void updateItem(Long itemId, String name, int price, String description, String place) {
         Item findItem = itemRepository.findOne(itemId);//영속성 상태로 가져온 것
 
-        findItem.setPrice(price);
         findItem.setName(name);
-//        findItem.setStockQuantity(stockQuantity);
+        findItem.setPrice(price);
+        findItem.setDescription(description);
+        findItem.setPlace(place);
 
     }
 
