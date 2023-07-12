@@ -1,5 +1,6 @@
 package com.market.carrot.daangn.domain.form;
 
+import com.market.carrot.daangn.domain.UploadFile;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,5 +15,6 @@ public class ItemForm {
     private int price;
     private String description;
     private String place;
-    private File attachFile;
+    private MultipartFile attachFile;
+    private List<MultipartFile> imageFiles;
 }

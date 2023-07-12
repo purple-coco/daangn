@@ -76,7 +76,7 @@ public class HomeController {
 
     @PostMapping("/members/login")
     public String LoginForm(@Valid @ModelAttribute("loginForm") MemberLoginForm form,
-                            BindingResult bindingResult, @RequestParam(defaultValue = "/") String redirectUrl,
+                            BindingResult bindingResult,
                             HttpServletRequest request) {
 
         if(bindingResult.hasErrors()) {
@@ -93,7 +93,7 @@ public class HomeController {
         HttpSession session = request.getSession();;
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-        return "redirect:" + redirectUrl;
+        return "loginHome";
 
 
     }

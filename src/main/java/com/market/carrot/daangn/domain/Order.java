@@ -64,7 +64,7 @@ public class Order {
             order.addOrderItem(orderItem);
         }
 
-        order.setStatus(OrderStatus.ORDER);
+        order.setStatus(OrderStatus.TRADE);
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
@@ -80,10 +80,24 @@ public class Order {
             throw new IllegalStateException("이미 배송 완료된 상품은 취소가 불가능합니다");
         }
 
-        this.setStatus(OrderStatus.CANCEL);
+        this.setStatus(OrderStatus.TRADE);
 //        for (OrderItem orderItem : orderItems) {
 //            orderItem.cancel();
 //        }
+    }
+
+    /**
+     * 판매 완료
+     */
+    public void soldout() {
+        this.setStatus(OrderStatus.COMPLETED);
+    }
+
+    /**
+     * 상품 예약
+     */
+    public void reserve() {
+        this.setStatus(OrderStatus.RESERVATION);
     }
 
     /**

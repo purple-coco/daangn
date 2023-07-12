@@ -17,16 +17,22 @@ public class FileStore {
     @Value("${file.dir}")
     private String fileDir;
 
+
     public String getFullPath(String filename) {
         return fileDir  + filename;
     }
 
+    /**
+     * 파일을 저장하는 법
+     * @param multipartFiles
+     * @return
+     * @throws IOException
+     */
     public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
         List<UploadFile> storeFileResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             if (!multipartFile.isEmpty()) {
-                UploadFile uploadFile = storeFile(multipartFile);
-                storeFileResult.add(uploadFile);
+                storeFileResult.add(storeFile(multipartFile));
 
             }
         }
@@ -41,9 +47,11 @@ public class FileStore {
 
         String originalFilename = multipartFile.getOriginalFilename();
         String storeFileName = createStoreFileName(originalFilename);
+        String url = "file:" + getFullPath(storeFileName);
+
         multipartFile.transferTo(new File(getFullPath(storeFileName)));
 
-        return new UploadFile(originalFilename, storeFileName);
+        return new UploadFile(url, originalFilename, storeFileName);
 
     }
 

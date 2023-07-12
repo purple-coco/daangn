@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)//한 테이블에 때려박기
@@ -30,6 +32,12 @@ public class Item {
     @NotBlank
     private String place;
 
+    private int interest_count;
+
+
+    @OneToMany(mappedBy = "item", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    List<UploadFile> imageFiles = new ArrayList<>();
+
 //    @ManyToMany(mappedBy = "items")
 //    private List<Category> categories = new ArrayList<>();
 
@@ -42,16 +50,32 @@ public class Item {
     /**
      * 상품 생성 메서드
      */
-    public static Item createItem(String name, int price, String description, String place) {
+    public static Item createItem(String name, int price, String description, String place, List<UploadFile> imageFiles) {
         Item item = new Item();
 
         item.setName(name);
         item.setPrice(price);
         item.setDescription(description);
         item.setPlace(place);
+        item.setImageFiles(imageFiles);
 
         return item;
     }
+
+    /**
+     * 좋아요 증가하는 로직
+     */
+    public void addLike() {
+        this.interest_count++;
+    }
+
+    /**
+     * 좋아요 감소하는 로직
+     */
+    public void removeLike() {
+        this.interest_count--;
+    }
+
 
 
 }

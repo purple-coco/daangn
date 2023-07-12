@@ -1,5 +1,6 @@
 package com.market.carrot.daangn.controller;
 
+import com.market.carrot.daangn.domain.UploadFile;
 import com.market.carrot.daangn.domain.form.ItemForm;
 import com.market.carrot.daangn.domain.Item;
 import com.market.carrot.daangn.file.FileStore;
@@ -8,6 +9,7 @@ import com.market.carrot.daangn.service.ItemService;
 import com.market.carrot.daangn.validation.ItemValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -37,21 +42,34 @@ public class ItemController {
     }
 
     @PostMapping("/items/new")
-    public String create(@Validated @ModelAttribute("form") ItemForm form, BindingResult bindingResult) {
+    public String createItem(@Validated @ModelAttribute("form") ItemForm form, BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) throws IOException {
 
         if(bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "items/createItemForm";
         }
 
-        Item item = Item.createItem(form.getName(), form.getPrice(), form.getDescription(), form.getPlace());
+        List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
+
+        Item item = Item.createItem(form.getName(), form.getPrice(), form.getDescription(), form.getPlace(), storeImageFiles);
 
         itemService.saveItem(item);
 
-        return "redirect:/items";
+        redirectAttributes.addAttribute("itemId", item.getId());
+
+        return "redirect:/items/{itemId}";
     }
 
 
+    @GetMapping("/items/{id}")
+    public String items(@PathVariable Long id, Model model) {
+        Item item = itemService.findOne(id);
+
+        model.addAttribute("item", item);
+
+        return "itemDetail";
+    }
 
     @GetMapping("/items")
     public String list(Model model) {
@@ -76,32 +94,10 @@ public class ItemController {
         return "items/updateItemForm";
     }
 
-//    @PostMapping("items/{itemId}/edit")
-//    public String updateItem(@ModelAttribute("form") BookFrom form) {
-//        Book book = new Book();
-//
-//        book.setId(form.getId());
-//        book.setName(form.getName());
-//        book.setPrice(form.getPrice());
-//        book.setStockQuantity(form.getStockQuantity());
-//        book.setAuthor(form.getAuthor());
-//        book.setIsbn(form.getIsbn());
-//
-//        itemService.saveItem(book);
-//
-//        return "redirect:/items";
-//    }
 
     @PostMapping("items/{itemId}/edit")
     public String updateItem(@PathVariable Long itemId, @Validated @ModelAttribute("form") ItemForm form, BindingResult bindingResult) {
-//        Book book = new Book();
-//
-//        book.setId(form.getId());
-//        book.setName(form.getName());
-//        book.setPrice(form.getPrice());
-//        book.setStockQuantity(form.getStockQuantity());
-//        book.setAuthor(form.getAuthor());
-//        book.setIsbn(form.getIsbn());
+
         if(bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "items/updateItemForm";

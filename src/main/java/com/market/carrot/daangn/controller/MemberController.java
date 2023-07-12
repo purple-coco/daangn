@@ -51,7 +51,7 @@ public class MemberController {
         Member member = Member.createMember(form.getUsername(), form.getPassword(), form.getPassword2(),  form.getName(), address);
 
         memberService.join(member);
-        return "redirect:/";
+        return "home";
     }
 
 }

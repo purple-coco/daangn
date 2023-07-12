@@ -20,6 +20,8 @@ logging:
     org.hibernate.type: trace
 
 server:
+  port: 8085
+
   servlet:
     session:
       tracking-modes: cookie
