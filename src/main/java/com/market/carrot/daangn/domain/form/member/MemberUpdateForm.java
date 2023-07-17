@@ -1,4 +1,4 @@
-package com.market.carrot.daangn.domain.form;
+package com.market.carrot.daangn.domain.form.member;
 
 import lombok.Getter;
 import lombok.Setter;

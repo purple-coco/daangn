@@ -2,7 +2,7 @@ package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.domain.Address;
 import com.market.carrot.daangn.domain.Member;
-import com.market.carrot.daangn.domain.form.MemberForm;
+import com.market.carrot.daangn.domain.form.member.MemberForm;
 import com.market.carrot.daangn.repository.MemberRepository;
 import com.market.carrot.daangn.service.MemberService;
 import com.market.carrot.daangn.validation.MemberValidator;
@@ -15,8 +15,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
 
 @Controller
 @Slf4j

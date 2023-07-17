@@ -2,7 +2,7 @@ package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.argumentresolver.Login;
 import com.market.carrot.daangn.domain.Member;
-import com.market.carrot.daangn.domain.form.MemberLoginForm;
+import com.market.carrot.daangn.domain.form.member.MemberLoginForm;
 import com.market.carrot.daangn.domain.session.SessionConst;
 import com.market.carrot.daangn.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

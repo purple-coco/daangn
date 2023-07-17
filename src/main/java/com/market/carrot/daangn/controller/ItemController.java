@@ -1,7 +1,7 @@
 package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.domain.UploadFile;
-import com.market.carrot.daangn.domain.form.ItemForm;
+import com.market.carrot.daangn.domain.form.item.ItemForm;
 import com.market.carrot.daangn.domain.Item;
 import com.market.carrot.daangn.file.FileStore;
 import com.market.carrot.daangn.repository.ItemRepository;
@@ -9,7 +9,6 @@ import com.market.carrot.daangn.service.ItemService;
 import com.market.carrot.daangn.validation.ItemValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -68,7 +66,7 @@ public class ItemController {
 
         model.addAttribute("item", item);
 
-        return "itemDetail";
+        return "items/detailItemForm";
     }
 
     @GetMapping("/items")
