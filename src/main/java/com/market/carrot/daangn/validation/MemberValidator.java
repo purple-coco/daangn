@@ -22,15 +22,15 @@ public class MemberValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Member memberForm = (Member) target;
+        Member member = (Member) target;
 
         // 비밀번호 복잡도 로직 적용
-        if (memberService.passwordValidate(memberForm.getPassword())) {
+        if (memberService.passwordValidate(member.getPassword())) {
             errors.rejectValue("password", "required");
         }
 
         // 비밀번호 , 비밀번호 확인 입력 받아서 둘이 일치하는지 확인하는 로직 구현
-        if (!memberService.passwordEquals(memberForm.getPassword(), memberForm.getPassword2())) {
+        if (!memberService.passwordEquals(member.getPassword(), member.getPassword2())) {
             errors.rejectValue("password2", "fix");
 
         }

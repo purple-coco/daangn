@@ -25,6 +25,8 @@ public class MemberService {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();// 항상 값이 존재한다는 보장이 있기 때문에 id 반환
+
+
     }
 
     /* 비밀번호 복잡도 규칙 적용 */
