@@ -64,6 +64,8 @@ public class MemberService {
 
         Member loginMember = memberRepository.findByUsername(username);
 
+        log.info("사용자 검증 Service{}", loginMember);
+
         if (!loginMember.getUsername().equals(username) ||
             !loginMember.getPassword().equals(password)) {
 
@@ -83,5 +85,7 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOneById(memberId);
     }
+
+    public Member findByUsername(String username) { return memberRepository.findByUsername(username); }
 
 }

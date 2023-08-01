@@ -44,7 +44,7 @@ public class MemberController {
         Address address = new Address(form.getCity(), form.getStreet());
 
 
-        Member member = Member.createMember(form.getUsername(), form.getPassword(), form.getPassword2(),  form.getName(), address);
+        Member member = Member.createMember(form.getUsername(), form.getPassword(), form.getPassword2(), form.getName(), address);
 
         memberService.join(member);
         return "home";

@@ -11,6 +11,7 @@ public class ItemForm {
 
     private Long id;
     private String name;
+    private String thumbnail;
     private int price;
     private String description;
     private String place;

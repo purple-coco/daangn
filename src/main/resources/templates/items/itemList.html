@@ -18,6 +18,7 @@
             </thead>
             <tbody>
             <tr th:each="item : ${items}">
+                <img th:src="${item.thumbnail}"/>
                 <td th:text="${item.id}"></td>
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>

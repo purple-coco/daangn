@@ -32,6 +32,8 @@ public class Item {
     @NotBlank
     private String place;
 
+    private String thumbnail;
+
     private int interest_count;
 
 
@@ -74,6 +76,14 @@ public class Item {
      */
     public void removeLike() {
         this.interest_count--;
+    }
+
+    /**
+     * 썸네일 등록하는 로직
+     */
+    public void setThumbnail(List<UploadFile> imageFiles) {
+        this.thumbnail = imageFiles.get(0).getUrl();
+        this.imageFiles = imageFiles;
     }
 
 

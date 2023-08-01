@@ -1,21 +1,26 @@
 package com.market.carrot.daangn.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Member implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -30,6 +35,9 @@ public class Member {
 
     @NotEmpty
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private MemberRole authority;
 
     private Address address;
 
@@ -51,4 +59,8 @@ public class Member {
         return member;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton((GrantedAuthority) () -> String.valueOf(authority));
+    }
 }

@@ -70,6 +70,7 @@ public class HomeController {
 
     @GetMapping("/members/login")
     public String loginForm(@ModelAttribute("loginForm") MemberLoginForm form) {
+        log.info("로그인폼 접근");
         return "members/loginMemberForm";
     }
 
@@ -78,9 +79,12 @@ public class HomeController {
                             BindingResult bindingResult,
                             HttpServletRequest request) {
 
+        log.info("로그인폼 실행");
         if(bindingResult.hasErrors()) {
             return "members/loginMemberForm";
         }
+
+        log.info("사용자 검증 Controller");
 
         Member loginMember = memberService.loginMember(form.getUsername(), form.getPassword());
 

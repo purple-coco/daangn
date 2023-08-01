@@ -8,10 +8,10 @@ import javax.validation.constraints.NotEmpty;
 @Getter @Setter
 public class MemberLoginForm {
 
-    @NotEmpty
+    @NotEmpty(message = "아이디를 입력하세요")
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message = "비밀번호를 입력하세요")
     private String password;
 
 }
