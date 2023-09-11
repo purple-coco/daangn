@@ -1,10 +1,10 @@
 package com.market.carrot.daangn.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 
 @Entity
 @Getter @Setter
-public class Member implements UserDetails {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +45,14 @@ public class Member implements UserDetails {
     private List<Order> orders = new ArrayList<>();
 
     /**
+     * 비밀번호 암호화
+     */
+    public Member encryptedPassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+        return this;
+    }
+
+    /**
      * 회원 생성 메서드
      */
     public static Member createMember(String username, String password, String password2, String name, Address address) {
@@ -53,14 +61,12 @@ public class Member implements UserDetails {
         member.setUsername(username);
         member.setPassword(password);
         member.setPassword2(password2);
+        member.setAuthority(MemberRole.USER);
         member.setName(name);
         member.setAddress(address);
 
         return member;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton((GrantedAuthority) () -> String.valueOf(authority));
-    }
+
 }
