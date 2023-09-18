@@ -44,13 +44,6 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-    /**
-     * 비밀번호 암호화
-     */
-    public Member encryptedPassword(PasswordEncoder passwordEncoder) {
-        this.password = passwordEncoder.encode(this.password);
-        return this;
-    }
 
     /**
      * 회원 생성 메서드

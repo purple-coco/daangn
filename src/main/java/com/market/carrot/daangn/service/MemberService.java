@@ -21,11 +21,14 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
 
     /* 회원 가입 */
     public Long join(Member member) {
         validateDuplicateMember(member);
+        BcryptPassword(member);
         memberRepository.save(member);
         return member.getId();// 항상 값이 존재한다는 보장이 있기 때문에 id 반환
 
@@ -48,10 +51,17 @@ public class MemberService {
         log.info("{}", password2);
         log.info("{}", password1.equals(password2));
 
-
         return password1.equals(password2);
     }
 
+    /**
+     * 비밀번호 BcryptPasswordEncoder 적용
+     * @param member
+     */
+    public void BcryptPassword(Member member){
+        String encodedPassword = bCryptPasswordEncoder.encode(member.getPassword());
+        member.setPassword(encodedPassword);
+    }
 
     /* 중복 회원 검증 */
     private void validateDuplicateMember(Member member) {
