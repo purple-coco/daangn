@@ -30,3 +30,6 @@ server:
 
 file:
   dir: ${user.dir}/src/main/resources/files/
+
+jwt:
+  secret: hello.eunsol.world

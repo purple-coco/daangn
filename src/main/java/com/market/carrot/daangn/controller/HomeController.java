@@ -1,11 +1,13 @@
 package com.market.carrot.daangn.controller;
 
 import com.market.carrot.daangn.argumentresolver.Login;
+import com.market.carrot.daangn.config.jwt.JwtUtil;
 import com.market.carrot.daangn.domain.Member;
 import com.market.carrot.daangn.domain.form.member.MemberLoginForm;
 import com.market.carrot.daangn.domain.session.SessionConst;
 import com.market.carrot.daangn.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +23,12 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final MemberService memberService;
+    @Value("${jwt.secret}")
+    private String secretKey;
 
+    private Long expriedMs = 1000 * 60 * 60l;
+
+    private final MemberService memberService;
 
 //    @RequestMapping("/")
 //    public String home(HttpServletRequest request, Model model) {
@@ -44,7 +50,6 @@ public class HomeController {
 //
 //    }
 
-    @GetMapping("/")
 //    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
 //                       Member loginMember, Model model) {
 //
@@ -56,6 +61,7 @@ public class HomeController {
 //        return "loginHome";
 //
 //    }
+    @GetMapping("/")
     public String home(@Login Member loginMember, Model model) {
 
         if (loginMember == null) {
@@ -94,6 +100,7 @@ public class HomeController {
         }
 
         HttpSession session = request.getSession();;
+        JwtUtil.createJwt(form.getUsername(), secretKey, expriedMs);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
         return "loginHome";
