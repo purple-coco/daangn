@@ -1,6 +1,5 @@
 package com.market.carrot.daangn.controller;
 
-import com.market.carrot.daangn.argumentresolver.Login;
 import com.market.carrot.daangn.config.jwt.JwtUtil;
 import com.market.carrot.daangn.domain.Member;
 import com.market.carrot.daangn.domain.form.member.MemberLoginForm;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Key;
 
 @Controller
 @Slf4j
@@ -26,43 +26,12 @@ public class HomeController {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private Long expriedMs = 1000 * 60 * 60l;
+    private Long expiredMs = 1000 * 60 * 60L;
 
     private final MemberService memberService;
 
-//    @RequestMapping("/")
-//    public String home(HttpServletRequest request, Model model) {
-//
-//        HttpSession session = request.getSession(false);
-//
-//        if (session == null) {
-//            return "home";
-//        }
-//
-//        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
-//
-//        if (loginMember == null) {
-//            return "home";
-//        }
-//
-//        model.addAttribute("member", loginMember);
-//        return "loginHome";
-//
-//    }
-
-//    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
-//                       Member loginMember, Model model) {
-//
-//        if (loginMember == null) {
-//            return "home";
-//        }
-//
-//        model.addAttribute("member", loginMember);
-//        return "loginHome";
-//
-//    }
     @GetMapping("/")
-    public String home(@Login Member loginMember, Model model) {
+    public String home(Member loginMember, Model model) {
 
         if (loginMember == null) {
             return "home";
@@ -100,10 +69,11 @@ public class HomeController {
         }
 
         HttpSession session = request.getSession();;
-        JwtUtil.createJwt(form.getUsername(), secretKey, expriedMs);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-        return "loginHome";
+        return JwtUtil.createJWT(form.getUsername(), secretKey, expiredMs);
+
+//        return "loginHome";
 
 
     }

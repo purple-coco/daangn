@@ -1,6 +1,5 @@
 package com.market.carrot.daangn.config;
 
-import com.market.carrot.daangn.argumentresolver.LoginMemberArgumentResolver;
 import com.market.carrot.daangn.filter.LoginCheckFilter;
 import com.market.carrot.daangn.interceptor.LoginCheckInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -16,10 +15,7 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new LoginMemberArgumentResolver());
-    }
+
 
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
@@ -31,6 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
 //    }
 
 //    @Bean
+
+    @Bean
     public FilterRegistrationBean loginCheckFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LoginCheckFilter());

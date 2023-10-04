@@ -38,7 +38,7 @@ public class SpringSecurityConfig {
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);// JWT 사용할 때 필요한 옵션
 
         http.formLogin()
                 .loginPage("/members/login")
